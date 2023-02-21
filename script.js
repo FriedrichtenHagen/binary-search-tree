@@ -10,32 +10,25 @@ function createNode(data, leftChild, rightChild){
 let node = createNode("Fried", 1, 2)
 
 let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
+let sortedArr = [1, 2, 3, 4, 5, 6, 7, 8]
+let smallArr = [1,2]
 
-function sortedBinaryTree(array){
+function sortedBinaryTree(array, start, end){
     // base cases: 
-    if(array.length === 1){
-        // set last value as a leaf node
-        return createNode(array[0], null, null)
-
-    } else if(array.length === 2){
-        // two leaf nodes
-        return createNode(array[0], null, null), createNode(array[1], null, null)
+    if(start>end){
+        // end is smaller when it is calculated from mid-1 and the array is smaller than 2 (then there is no real mid that is not equal to start or end)
+        return null
     }
 
     // find middle of array
     let middle = Math.floor(array.length/2) 
-    // [1, 2, 3]
-    // 
-    // create two halves
+
     let leftHalf = array.slice(0, middle)
     let rightHalf = array.slice(middle+1, array.length)
+  
 
     // create new root node
-    createNode(array[middle], sortedBinaryTree(leftHalf), sortedBinaryTree(rightHalf))
-
-    
-
-
-
+    return createNode(array[middle], sortedBinaryTree(leftHalf), sortedBinaryTree(rightHalf))
 }
 
+let mar = sortedBinaryTree(sortedArr)
