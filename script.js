@@ -7,14 +7,6 @@ function createNode(data){
         rightChild: null,
     }
 }
-let node = createNode("Fried", 1, 2)
-
-let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-let arrT = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-let sortedArr = mergeSort(arr)
-let smallArr = [1,2]
-
-
 
 function mergeSort(array){
     // base case
@@ -87,9 +79,6 @@ function sortedBinaryTree(array, start, end){
     return node
 }
 
-let mar = sortedBinaryTree(sortedArr, 0, 7)
-
-
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node.rightChild !== null) {
       prettyPrint(node.rightChild, `${prefix}${isLeft ? '│   ' : '    '}`, false);
@@ -99,7 +88,25 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
       prettyPrint(node.leftChild, `${prefix}${isLeft ? '    ' : '│   '}`, true);
     }
   }
-prettyPrint(mar)
+
+
+let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
+
+
+function functionDriver(){
+    console.log(arr)
+    let removedDuplicates = removeDuplicates(arr)
+    console.log(removedDuplicates)
+    let sortedArray = mergeSort(removedDuplicates)
+    console.log(sortedArray)
+    
+    let biTree = sortedBinaryTree(sortedArray, 0, sortedArray.length)
+
+    
+    prettyPrint(biTree)
+}
+
+functionDriver()
 
 /*
 clean up the order of functions that access the array
