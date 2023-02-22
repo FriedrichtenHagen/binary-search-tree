@@ -1,10 +1,10 @@
 
 
-function createNode(data, leftChild, rightChild){
+function createNode(data){
     return {
         data: data,
-        leftChild: leftChild,
-        rightChild: rightChild,
+        leftChild: null,
+        rightChild: null,
     }
 }
 let node = createNode("Fried", 1, 2)
@@ -21,14 +21,12 @@ function sortedBinaryTree(array, start, end){
     }
 
     // find middle of array
-    let middle = Math.floor(array.length/2) 
+    let middle = Math.floor((start + end)/2)
 
-    let leftHalf = array.slice(0, middle)
-    let rightHalf = array.slice(middle+1, array.length)
-  
-
-    // create new root node
-    return createNode(array[middle], sortedBinaryTree(leftHalf), sortedBinaryTree(rightHalf))
+    let node = createNode(array[middle])
+    node.leftChild = sortedBinaryTree(array, start, middle-1)
+    node.rightChild = sortedBinaryTree(array, middle+1, end)
+    return node
 }
 
-let mar = sortedBinaryTree(sortedArr)
+let mar = sortedBinaryTree(sortedArr, 0, 7)
