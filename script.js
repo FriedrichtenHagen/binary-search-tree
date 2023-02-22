@@ -10,6 +10,7 @@ function createNode(data){
 let node = createNode("Fried", 1, 2)
 
 let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
+let arrT = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 let sortedArr = mergeSort(arr)
 let smallArr = [1,2]
 
@@ -64,6 +65,11 @@ function mergeSort(array){
         return merged
     }
 }
+function removeDuplicates(array){
+    return [...new Set(array)];
+    // a Set can only contain one instance of each value, so duplicate values are excluded
+    // ... spread operator turns set into array
+}
 
 function sortedBinaryTree(array, start, end){
     // base cases: 
@@ -94,3 +100,8 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
     }
   }
 prettyPrint(mar)
+
+/*
+clean up the order of functions that access the array
+
+*/
