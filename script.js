@@ -90,7 +90,34 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
   }
 
 
-let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
+let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 7777, 324]
+
+function insertNode(binaryTree, value){
+    if(value<binaryTree.data){
+        // go left
+        if(binaryTree.leftChild === null){
+            // we have reached the end of this path
+            binaryTree.leftChild = createNode(value)
+            console.log("suc")
+            return
+        } else{
+            insertNode(binaryTree.leftChild, value)
+        }
+    }
+    else if(value>binaryTree.data){
+        // go right
+        if(binaryTree.rightChild === null){
+            // we have reached the end of this path
+            binaryTree.rightChild = createNode(value)
+            console.log("suc")
+            return
+        } else{
+            insertNode(binaryTree.rightChild, value)
+        }
+    }else{
+        // alert("this value already exists in the tree")
+    }
+}
 
 
 function functionDriver(){
@@ -101,12 +128,13 @@ function functionDriver(){
     console.log(sortedArray)
     
     let biTree = sortedBinaryTree(sortedArray, 0, sortedArray.length)
-
+    console.log(biTree)
     
     prettyPrint(biTree)
+    return biTree
 }
 
-functionDriver()
+let mas = functionDriver()
 
 /*
 clean up the order of functions that access the array
