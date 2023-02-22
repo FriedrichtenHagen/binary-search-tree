@@ -82,3 +82,15 @@ function sortedBinaryTree(array, start, end){
 }
 
 let mar = sortedBinaryTree(sortedArr, 0, 7)
+
+
+const prettyPrint = (node, prefix = '', isLeft = true) => {
+    if (node.rightChild !== null) {
+      prettyPrint(node.rightChild, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+    }
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+    if (node.leftChild !== null) {
+      prettyPrint(node.leftChild, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+    }
+  }
+prettyPrint(mar)
