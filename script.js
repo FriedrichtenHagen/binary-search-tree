@@ -120,26 +120,66 @@ function insertNode(binaryTree, value){
 }
 
 function deleteNode(binaryTree, nodeData){
-    // find the node that is to be deleted
-    if(binaryTree.leftChild.data === nodeData){
-        // delete the child node
-        binaryTree.leftChild = null
-    } 
-    else if(binaryTree.rightChild.data === nodeData){
-        // delete the child node
-        binaryTree.rightChild = null
-    }
-    else{
-        // continue traversing the binary tree
-        if(nodeData < binaryTree.data){
+    // check child nodes for node that should be deleted
+
+    if(nodeData < binaryTree.data){
+        // check left child node
+        if(binaryTree.leftChild.data === nodeData){
+            // go through the three possible cases
+
+            if(binaryTree.leftChild.leftChild===null&&binaryTree.leftChild.rightChild===null){
+            // case 1: delete LEAF NODE    
+                binaryTree.leftChild = null
+            }
+            else if(binaryTree.leftChild.leftChild===null||binaryTree.leftChild.rightChild===null){
+            // case 2: only one of the child nodes exists    
+            }
+            else{
+            // (binaryTree.leftChild.leftChild===null||binaryTree.leftChild.rightChild===null)
+            // case 3: both child nodes exist
+            }
+        } 
+        else{
             // go left
+            // continue traversing the binary tree
             deleteNode(binaryTree.leftChild, nodeData)
         }
-        else if(nodeData > binaryTree.data){
+    } else if(nodeData > binaryTree.data){
+        // check right child node
+        if(binaryTree.rightChild.data === nodeData){
+        // go through the three possible cases
+
+            if(binaryTree.rightChild.leftChild===null&&binaryTree.leftChild.rightChild===null){
+            // case 1: delete LEAF NODE    
+                binaryTree.rightChild = null
+            }
+            else if(binaryTree.rightChild.leftChild===null||binaryTree.rightChild.rightChild===null){
+            // case 2: only one of the child nodes exists    
+            }
+            else{
+            // (binaryTree.rightChild.leftChild===null||binaryTree.rightChild.rightChild===null)
+            // case 3: both child nodes exist
+            }
+        } 
+        else{
+            
             // go right
+            // continue traversing the binary tree
             deleteNode(binaryTree.rightChild, nodeData)
         }
+
     }
+   
+    
+    
+    
+   
+    
+
+
+
+    // continue traversing the binary tree
+
   
     // case 1: delete leaf node
 
