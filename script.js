@@ -119,6 +119,21 @@ function insertNode(binaryTree, value){
     }
 }
 
+function deleteNode(){
+    // case 1: delete leaf node
+    // case 2: delete node with only one child
+        // connect parent node with child node
+    // case 3: delete node with two children
+        // case 3a: 
+        // replace node with next biggest node (that does not have children)
+        // (this is the left most node of the right subtree)
+        
+        // case 3b: 
+        // replace node with next biggest node (that HAS children)
+        // connect parent node with child node
+
+
+}
 
 function functionDriver(){
     console.log(arr)
