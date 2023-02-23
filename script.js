@@ -119,8 +119,30 @@ function insertNode(binaryTree, value){
     }
 }
 
-function deleteNode(){
+function deleteNode(binaryTree, nodeData){
+    // find the node that is to be deleted
+    if(binaryTree.leftChild.data === nodeData){
+        // delete the child node
+        binaryTree.leftChild = null
+    } 
+    else if(binaryTree.rightChild.data === nodeData){
+        // delete the child node
+        binaryTree.rightChild = null
+    }
+    else{
+        // continue traversing the binary tree
+        if(nodeData < binaryTree.data){
+            // go left
+            deleteNode(binaryTree.leftChild, nodeData)
+        }
+        else if(nodeData > binaryTree.data){
+            // go right
+            deleteNode(binaryTree.rightChild, nodeData)
+        }
+    }
+  
     // case 1: delete leaf node
+
     // case 2: delete node with only one child
         // connect parent node with child node
     // case 3: delete node with two children
@@ -132,7 +154,9 @@ function deleteNode(){
         // replace node with next biggest node (that HAS children)
         // connect parent node with child node
 
+    return binaryTree
 
+    // todo: allow the first node (the whole tree) to be deleted
 }
 
 function functionDriver(){
