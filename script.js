@@ -143,9 +143,44 @@ function deleteNode(binaryTree, nodeData){
                 }
             }
             else{
-            // (binaryTree.leftChild.leftChild===null||binaryTree.leftChild.rightChild===null)
+            
             // case 3: both child nodes exist
             console.log("case 3")
+
+
+            // binaryTree.leftChild.leftChild&&binaryTree.leftChild.rightChild
+
+
+            // case 3: delete node with two children
+                    // case 3a: 
+                    // replace node with next biggest node (that does not have children)
+                    // save right and left children
+                    let rightChildren = binaryTree.leftChild.rightChild
+                    let leftChildren = binaryTree.leftChild.leftChild
+
+                    // find next biggest node
+                    let nextBiggestNode = findNextBiggestNode(binaryTree.leftChild.rightChild)
+                    // (this is the left most node of the right subtree)
+                    function findNextBiggestNode(currentNode){
+                        if(currentNode.leftChild===null){
+                            console.log(currentNode)
+                            return currentNode
+
+                        } else{
+                            findNextBiggestNode(currentNode.leftChild)
+                        }
+                    }
+                    // replace deleted node with nextBiggestNode
+                    binaryTree.leftChild = nextBiggestNode
+                    // reattach the previous children
+                    binaryTree.leftChild.rightChild = rightChildren
+                    binaryTree.leftChild.leftChild = leftChildren
+
+                    // case 3b: 
+                    // replace node with next biggest node (that HAS children)
+                    // connect parent node with child node
+
+
             }
         } 
         else{
@@ -175,8 +210,19 @@ function deleteNode(binaryTree, nodeData){
                 }
             }
             else{
-            // (binaryTree.rightChild.leftChild===null||binaryTree.rightChild.rightChild===null)
             // case 3: both child nodes exist
+
+
+            // case 3: delete node with two children
+                    // case 3a: 
+                    // replace node with next biggest node (that does not have children)
+                    // (this is the left most node of the right subtree)
+                    
+                    // case 3b: 
+                    // replace node with next biggest node (that HAS child). The child can only be on the right side.
+                    // connect parent node with child node
+
+
             console.log("case 3")
             }
         } 
