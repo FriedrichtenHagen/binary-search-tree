@@ -1,5 +1,3 @@
-
-
 function createNode(data){
     return {
         data: data,
@@ -127,16 +125,19 @@ function deleteNode(binaryTree, nodeData){
         if(binaryTree.leftChild.data === nodeData){
             // go through the three possible cases
 
-            if(binaryTree.leftChild.leftChild===null&&binaryTree.leftChild.rightChild===null){
+            if(!binaryTree.leftChild.leftChild&&!binaryTree.leftChild.rightChild){
             // case 1: delete LEAF NODE    
+                console.log("case 1")
                 binaryTree.leftChild = null
             }
-            else if(binaryTree.leftChild.leftChild===null||binaryTree.leftChild.rightChild===null){
+            else if((!binaryTree.leftChild.leftChild && binaryTree.leftChild.rightChild)||(binaryTree.leftChild.leftChild &&!binaryTree.leftChild.rightChild)){
             // case 2: only one of the child nodes exists    
+            console.log("case 2")
             }
             else{
             // (binaryTree.leftChild.leftChild===null||binaryTree.leftChild.rightChild===null)
             // case 3: both child nodes exist
+            console.log("case 3")
             }
         } 
         else{
@@ -149,11 +150,11 @@ function deleteNode(binaryTree, nodeData){
         if(binaryTree.rightChild.data === nodeData){
         // go through the three possible cases
 
-            if(binaryTree.rightChild.leftChild===null&&binaryTree.leftChild.rightChild===null){
+            if(!binaryTree.rightChild.leftChild&&!binaryTree.rightChild.rightChild){
             // case 1: delete LEAF NODE    
                 binaryTree.rightChild = null
             }
-            else if(binaryTree.rightChild.leftChild===null||binaryTree.rightChild.rightChild===null){
+            else if(!binaryTree.rightChild.leftChild||!binaryTree.rightChild.rightChild){
             // case 2: only one of the child nodes exists    
             }
             else{
@@ -168,6 +169,11 @@ function deleteNode(binaryTree, nodeData){
             deleteNode(binaryTree.rightChild, nodeData)
         }
 
+    }
+    else{
+        // nodeData === binaryTree.data
+        // special case where the first node is replaced
+        
     }
    
     
