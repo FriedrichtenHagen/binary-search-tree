@@ -133,6 +133,14 @@ function deleteNode(binaryTree, nodeData){
             else if((!binaryTree.leftChild.leftChild && binaryTree.leftChild.rightChild)||(binaryTree.leftChild.leftChild &&!binaryTree.leftChild.rightChild)){
             // case 2: only one of the child nodes exists    
             console.log("case 2")
+                if(!binaryTree.leftChild.leftChild && binaryTree.leftChild.rightChild){
+                    // case 2a: left child of target node doesnt exist
+                    binaryTree.leftChild = binaryTree.leftChild.rightChild
+                }
+                else if(binaryTree.leftChild.leftChild &&!binaryTree.leftChild.rightChild){
+                    // case 2b: right child of target node doesnt exist
+                    binaryTree.leftChild = binaryTree.leftChild.leftChild
+                }
             }
             else{
             // (binaryTree.leftChild.leftChild===null||binaryTree.leftChild.rightChild===null)
@@ -155,11 +163,21 @@ function deleteNode(binaryTree, nodeData){
                 binaryTree.rightChild = null
             }
             else if(!binaryTree.rightChild.leftChild||!binaryTree.rightChild.rightChild){
-            // case 2: only one of the child nodes exists    
+            // case 2: only one of the child nodes exists  
+            console.log("case 2") 
+                if(!binaryTree.rightChild.leftChild && binaryTree.rightChild.rightChild){
+                    // case 2a: left child of target node doesnt exist
+                    binaryTree.rightChild = binaryTree.rightChild.rightChild
+                }
+                else if(binaryTree.rightChild.leftChild &&!binaryTree.rightChild.rightChild){
+                    // case 2b: right child of target node doesnt exist
+                    binaryTree.rightChild = binaryTree.rightChild.leftChild
+                }
             }
             else{
             // (binaryTree.rightChild.leftChild===null||binaryTree.rightChild.rightChild===null)
             // case 3: both child nodes exist
+            console.log("case 3")
             }
         } 
         else{
