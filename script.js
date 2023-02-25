@@ -154,22 +154,29 @@ function deleteNode(binaryTree, nodeData){
             // case 3: delete node with two children
                     // case 3a: 
                     // replace node with next biggest node (that does not have children)
-                    // save right and left children
-                    let rightChildren = binaryTree.leftChild.rightChild
-                    let leftChildren = binaryTree.leftChild.leftChild
+
 
                     // find next biggest node
-                    let nextBiggestNode = findNextBiggestNode(binaryTree.leftChild.rightChild)
+                    let nextBiggestNode;
+                    findNextBiggestNode(binaryTree.leftChild.rightChild)
                     // (this is the left most node of the right subtree)
                     function findNextBiggestNode(currentNode){
                         if(currentNode.leftChild===null){
                             console.log(currentNode)
-                            return currentNode
+                            nextBiggestNode = currentNode
 
                         } else{
                             findNextBiggestNode(currentNode.leftChild)
                         }
                     }
+                    // next biggest node needs to be deleted from the branch!!!
+                    //deleteNode(binaryTree, nextBiggestNode)
+
+                    // save right and left children
+                    let rightChildren = binaryTree.leftChild.rightChild
+                    let leftChildren = binaryTree.leftChild.leftChild
+
+
                     // replace deleted node with nextBiggestNode
                     binaryTree.leftChild = nextBiggestNode
                     // reattach the previous children
@@ -179,7 +186,7 @@ function deleteNode(binaryTree, nodeData){
                     // case 3b: 
                     // replace node with next biggest node (that HAS children)
                     // connect parent node with child node
-
+                    return binaryTree
 
             }
         } 
