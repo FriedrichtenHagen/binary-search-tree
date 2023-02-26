@@ -185,7 +185,34 @@ function find(node, key){
         return find(node.rightChild, key)
     }
 }
+let queue = []
+function levelOrder(root){
+    // traverse tree in breadth-first level order
 
+    queue.push(root.data)
+
+    if(queue.length>0){
+        let firstQueueElement = queue.splice(0, 1)
+        console.log(firstQueueElement)
+        // children of first queue item to the queue
+        let firstNode = find(firstQueueElement)
+        queue.push(firstNode.leftChild)
+    }
+ 
+
+    // // push to queue
+    // if(root.leftChild){
+    //     queue.push(root.leftChild)
+    // } 
+    // else if(root.rightChild){
+    //     queue.push(root.rightChild)
+    // }
+    // else{
+    //     // leaf node
+    //     return 
+    // }
+
+}
 let mas = functionDriver()
 
 /*
