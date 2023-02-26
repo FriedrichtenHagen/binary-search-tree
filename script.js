@@ -87,8 +87,7 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
     }
   }
 
-
-let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 7777, 324]
+let arr = [1, 7, 4, 6, 23, 8, 9, 42, 99,44, 4, 3, 5, 7, 9, 67, 6345, 7777, 324]
 
 function insertNode(binaryTree, value){
     if(value<binaryTree.data){
@@ -147,6 +146,8 @@ function deleteNode(binaryTree, nodeData){
             console.log("case 3")
 
                 function findNextBiggestNode(currentNode){
+                // this function starts with right child = (binaryTree.leftChild.rightChild) of the deleted node(binaryTree.leftChild)
+
                     if(currentNode.leftChild===null){
 
 
@@ -155,7 +156,7 @@ function deleteNode(binaryTree, nodeData){
 
 
 
-                        
+
                         // special case: the first node that is tried is the left most node
                         // no further recursion is necessary
                         console.log(currentNode)
@@ -370,6 +371,8 @@ function functionDriver(){
 let mas = functionDriver()
 
 /*
-clean up the order of functions that access the array
+clear up undefined in original binary tree
+
+solve case 3 for both left and right direction
 
 */
