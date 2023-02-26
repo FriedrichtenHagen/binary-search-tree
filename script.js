@@ -116,243 +116,49 @@ function insertNode(binaryTree, value){
     }
 }
 
-function deleteNode(binaryTree, nodeData){
-    // check child nodes for node that should be deleted
-
-    if(nodeData < binaryTree.data){
-        // check left child node
-        if(binaryTree.leftChild.data === nodeData){
-            // go through the three possible cases
-            if(!binaryTree.leftChild.leftChild&&!binaryTree.leftChild.rightChild){
-            // case 1: delete LEAF NODE    
-                console.log("case 1")
-                binaryTree.leftChild = null
-            }
-            else if((!binaryTree.leftChild.leftChild && binaryTree.leftChild.rightChild)||(binaryTree.leftChild.leftChild &&!binaryTree.leftChild.rightChild)){
-            // case 2: only one of the child nodes exists    
-            console.log("case 2")
-                if(!binaryTree.leftChild.leftChild && binaryTree.leftChild.rightChild){
-                    // case 2a: left child of target node doesnt exist
-                    binaryTree.leftChild = binaryTree.leftChild.rightChild
-                }
-                else if(binaryTree.leftChild.leftChild &&!binaryTree.leftChild.rightChild){
-                    // case 2b: right child of target node doesnt exist
-                    binaryTree.leftChild = binaryTree.leftChild.leftChild
-                }
-            }
-            else{
-            // case 3: both child nodes exist
-            // (binaryTree.leftChild.leftChild&&binaryTree.leftChild.rightChild)
-            console.log("case 3")
-
-                function findNextBiggestNode(currentNode){
-                // this function starts with right child = (binaryTree.leftChild.rightChild) of the deleted node(binaryTree.leftChild)
-
-                    if(currentNode.leftChild===null){
-
-
-
-
-
-
-
-
-                        // special case: the first node that is tried is the left most node
-                        // no further recursion is necessary
-                        console.log(currentNode)
-                        // save left most node 
-                        let leftMostNode = currentNode
-                        // case 3b: check if our replacement node has a right child 
-                        if(currentNode.rightChild){
-                            // replace replacement node with its right child
-                            binaryTree.leftChild = currentNode.rightChild
-                        }
-                        else{
-                            // case 3a: next biggest node does not have children
-                            // delete the left most node from the original tree
-                            binaryTree.leftChild = null
-                        }
-                        // return that node
-                        return leftMostNode
-                    }
-                    else if(currentNode.leftChild.leftChild===null){
-                        // check if left most node has a right child
-                        // currentNode.leftChild is our goal node
-
-
-
-                        console.log(currentNode)
-                        // save left most node 
-                        let leftMostNode = currentNode.leftChild
-                        // case 3b: check if our replacement node has a right child 
-                        if(currentNode.leftChild.rightChild){
-                            // replace replacement node with its right child
-                            currentNode.leftChild = currentNode.leftChild.rightChild
-                        }
-                        else{
-                            // case 3a: next biggest node does not have children
-                            // delete the left most node from the original tree
-                            currentNode.leftChild = null
-                        }
-                        // return that node
-                        return leftMostNode
-
-                    } else{
-                        return findNextBiggestNode(currentNode.leftChild)
-                    }
-                }
-                let nextBiggestNode = findNextBiggestNode(binaryTree.leftChild.rightChild)
-
-                // save right and left children
-                let rightChildren = binaryTree.leftChild.rightChild
-                let leftChildren = binaryTree.leftChild.leftChild
-
-
-                // replace deleted node with nextBiggestNode
-                binaryTree.leftChild = nextBiggestNode
-                // reattach the previous children
-                binaryTree.leftChild.rightChild = rightChildren
-                binaryTree.leftChild.leftChild = leftChildren
-
-                return binaryTree
-            }
-        } 
-        else{
-            // go left
-            // continue traversing the binary tree
-            deleteNode(binaryTree.leftChild, nodeData)
-        }
-    } 
-    else if(nodeData > binaryTree.data){
-        // check right child node
-        if(binaryTree.rightChild.data === nodeData){
-        // go through the three possible cases
-
-            if(!binaryTree.rightChild.leftChild&&!binaryTree.rightChild.rightChild){
-            // case 1: delete LEAF NODE    
-                binaryTree.rightChild = null
-            }
-            else if(!binaryTree.rightChild.leftChild||!binaryTree.rightChild.rightChild){
-            // case 2: only one of the child nodes exists  
-            console.log("case 2") 
-                if(!binaryTree.rightChild.leftChild && binaryTree.rightChild.rightChild){
-                    // case 2a: left child of target node doesnt exist
-                    binaryTree.rightChild = binaryTree.rightChild.rightChild
-                }
-                else if(binaryTree.rightChild.leftChild &&!binaryTree.rightChild.rightChild){
-                    // case 2b: right child of target node doesnt exist
-                    binaryTree.rightChild = binaryTree.rightChild.leftChild
-                }
-            }
-            else{
-                // case 3: both child nodes exist
-                // (binaryTree.leftChild.leftChild&&binaryTree.leftChild.rightChild)
-                console.log("case 3")
-    
-                    function findNextBiggestNode(currentNode){
-                        if(currentNode.leftChild===null){
-                            // special case: the first node that is tried is the left most node
-                            // no further recursion is necessary
-                            console.log(currentNode)
-                            // save left most node 
-                            let leftMostNode = currentNode
-                            // case 3b: check if our replacement node has a right child 
-                            if(currentNode.rightChild){
-                                // replace replacement node with its right child
-                                binaryTree.rightChild = currentNode.rightChild
-                            }
-                            else{
-                                // case 3a: next biggest node does not have children
-                                // delete the left most node from the original tree
-                                binaryTree.leftChild = null
-                            }
-                            // return that node
-                            return leftMostNode
-                        }
-
-                        else if(currentNode.leftChild.leftChild===null){
-                            // check if left most node has a right child
-                            // currentNode.leftChild is our goal node
-    
-                            console.log(currentNode)
-                            // save left most node 
-                            let leftMostNode = currentNode.leftChild
-                            // case 3b: check if our replacement node has a right child 
-                            if(currentNode.leftChild.rightChild){
-                                // replace replacement node with its right child
-                                currentNode.leftChild = currentNode.leftChild.rightChild
-                            }
-                            else{
-                                // case 3a: next biggest node does not have children
-                                // delete the left most node from the original tree
-                                currentNode.leftChild = null
-                            }
-                            // return that node
-                            return leftMostNode
-    
-                        } else{
-                            return findNextBiggestNode(currentNode.leftChild)
-                        }
-                    }
-                    let nextBiggestNode = findNextBiggestNode(binaryTree.rightChild.rightChild)
-    
-                    // save right and left children
-                    let rightChildren = binaryTree.rightChild.rightChild
-                    let leftChildren = binaryTree.rightChild.leftChild
-    
-    
-                    // replace deleted node with nextBiggestNode
-                    binaryTree.rightChild = nextBiggestNode
-                    // reattach the previous children
-                    binaryTree.rightChild.rightChild = rightChildren
-                    binaryTree.rightChild.leftChild = leftChildren
-
-                    return binaryTree
-    
-                }
-        } 
-        else{
-            
-            // go right
-            // continue traversing the binary tree
-            deleteNode(binaryTree.rightChild, nodeData)
-        }
-
+function deleteNode(node, key){
+    /* Base Case: If the tree is empty */
+    if(node.data=== null){
+        return node
+    }
+    // go left
+    if(key<node.data){
+        
+        node.leftChild = deleteNode(node.leftChild, key)
+    }
+    // go right
+    else if(key>node.data){  
+        node.rightChild = deleteNode(node.rightChild, key)
     }
     else{
-        // nodeData === binaryTree.data
-        // special case where the first node is replaced
-        
-    }
-   
-    
-    
-    
-   
-    
+        // node.data === key
+        // this is the node that we want to delete
+        if(node.leftChild === null){
+            return node.rightChild
+        }
+        else if(node.rightChild === null){
+            return node.leftChild
+        }
+        // else? looks cleaner
+        // get the left most Node to replace the deleted node
+        node.data = leftMostNode(node.rightChild)
 
+        // delete the replacement node from the right child tree
+        // does not cause a endless loop since the replacement node is always a leaf node (e.g. does not have any child nodes which could send this into a endless loop)
+        node.rightChild = deleteNode(node.rightChild, node.data)
 
-
-    // continue traversing the binary tree
-
-  
-    // case 1: delete leaf node
-
-    // case 2: delete node with only one child
-        // connect parent node with child node
-    // case 3: delete node with two children
-        // case 3a: 
-        // replace node with next biggest node (that does not have children)
-        // (this is the left most node of the right subtree)
-        
-        // case 3b: 
-        // replace node with next biggest node (that HAS children)
-        // connect parent node with child node
-
-    return binaryTree
-
-    // todo: allow the first node (the whole tree) to be deleted
+    } 
+    return node
 }
+function leftMostNode(node){
+    let minNode = node.data
+    while(node.leftChild != null){
+        minNode = node.leftChild.data
+        node = node.leftChild
+    }
+    return minNode
+}
+
 
 function functionDriver(){
     console.log(arr)
@@ -376,3 +182,15 @@ clear up undefined in original binary tree
 solve case 3 for both left and right direction
 
 */
+
+ 
+    // case 1: delete leaf node
+    // case 2: delete node with only one child
+        // connect parent node with child node
+    // case 3: delete node with two children
+        // case 3a: 
+        // replace node with next biggest node (that does not have children)
+        // (this is the left most node of the right subtree)
+        // case 3b: 
+        // replace node with next biggest node (that HAS children)
+        // connect parent node with child node
