@@ -1,3 +1,5 @@
+let arr = [1, 7, 4, 6, 23, 8, 9, 42, 99,44, 4, 3, 5, 7, 9, 67, 6345, 7777, 324]
+
 function createNode(data){
     return {
         data: data,
@@ -5,7 +7,6 @@ function createNode(data){
         rightChild: null,
     }
 }
-
 function mergeSort(array){
     // base case
     if(array.length<2){
@@ -60,7 +61,6 @@ function removeDuplicates(array){
     // a Set can only contain one instance of each value, so duplicate values are excluded
     // ... spread operator turns set into array
 }
-
 function sortedBinaryTree(array, start, end){
     // base cases: 
     if(start>end){
@@ -76,7 +76,6 @@ function sortedBinaryTree(array, start, end){
     node.rightChild = sortedBinaryTree(array, middle+1, end)
     return node
 }
-
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node.rightChild !== null) {
       prettyPrint(node.rightChild, `${prefix}${isLeft ? '│   ' : '    '}`, false);
@@ -86,9 +85,6 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
       prettyPrint(node.leftChild, `${prefix}${isLeft ? '    ' : '│   '}`, true);
     }
   }
-
-let arr = [1, 7, 4, 6, 23, 8, 9, 42, 99,44, 4, 3, 5, 7, 9, 67, 6345, 7777, 324]
-
 function insertNode(binaryTree, value){
     if(value<binaryTree.data){
         // go left
@@ -115,7 +111,6 @@ function insertNode(binaryTree, value){
         // alert("this value already exists in the tree")
     }
 }
-
 function deleteNode(node, key){
     /* Base Case: If the tree is empty */
     if(node.data=== null){
@@ -158,8 +153,6 @@ function leftMostNode(node){
     }
     return minNode
 }
-
-
 function functionDriver(){
     console.log(arr)
     let removedDuplicates = removeDuplicates(arr)
@@ -172,6 +165,25 @@ function functionDriver(){
     
     prettyPrint(biTree)
     return biTree
+}
+function find(node, key){
+    // find key and return node
+    if(node.data===key){
+        return node
+    }
+    else if(key<node.data){
+        if(node.leftChild===null){
+            return "not found in tree"
+        }
+        return find(node.leftChild, key)
+    }
+    else{
+        //(key>node.data)
+        if(node.leftChild===null){
+            return "not found in tree"
+        }
+        return find(node.rightChild, key)
+    }
 }
 
 let mas = functionDriver()
