@@ -191,15 +191,20 @@ function levelOrder(root){
 
     queue.push(root.data)
 
-    if(queue.length>0){
-        let firstQueueElement = queue.splice(0, 1)
+    while(queue.length>0){
+        let firstQueueElement = queue.splice(0, 1)[0]
         console.log(firstQueueElement)
         // children of first queue item to the queue
-        let firstNode = find(firstQueueElement)
-        queue.push(firstNode.leftChild)
+        let firstNode = find(root, firstQueueElement)
+        if(firstNode.leftChild){
+            queue.push(firstNode.leftChild.data)
+        }
+        if(firstNode.rightChild){
+            queue.push(firstNode.rightChild.data)
+        }
     }
  
-
+    return queue
     // // push to queue
     // if(root.leftChild){
     //     queue.push(root.leftChild)
