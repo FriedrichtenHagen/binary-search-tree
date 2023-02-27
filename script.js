@@ -179,7 +179,7 @@ function find(node, key){
     }
     else{
         //(key>node.data)
-        if(node.leftChild===null){
+        if(node.rightChild===null){
             return "not found in tree"
         }
         return find(node.rightChild, key)
@@ -250,7 +250,6 @@ function postorder(root){
     inorder(root.rightChild)
     console.log(root.data)
 }
-
 function height(root){ 
     let leftHeight=0;
     let rightHeight=0;
@@ -280,7 +279,24 @@ function height(root){
         return rightHeight
     }
 }
-
+function depth(node, key){
+    if(node.data===key){
+        return 0
+    }
+    else if(key<node.data){
+        if(node.leftChild===null){
+            return "not found in tree"
+        }
+        return depth(node.leftChild, key)+1
+    }
+    else{
+        //(key>node.data)
+        if(node.rightChild===null){
+            return "not found in tree"
+        }
+        return depth(node.rightChild, key)+1
+    }
+}
 
 let mas = functionDriver()
 
@@ -290,15 +306,3 @@ clear up undefined in original binary tree
 solve case 3 for both left and right direction
 
 */
-
- 
-    // case 1: delete leaf node
-    // case 2: delete node with only one child
-        // connect parent node with child node
-    // case 3: delete node with two children
-        // case 3a: 
-        // replace node with next biggest node (that does not have children)
-        // (this is the left most node of the right subtree)
-        // case 3b: 
-        // replace node with next biggest node (that HAS children)
-        // connect parent node with child node
