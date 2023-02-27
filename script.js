@@ -203,7 +203,7 @@ function levelOrder(root){
             queue.push(firstNode.rightChild.data)
         }
     }
- 
+
     return queue
     // // push to queue
     // if(root.leftChild){
@@ -218,6 +218,40 @@ function levelOrder(root){
     // }
 
 }
+/*
+preorder: root left right
+inorder: left root right
+postorder: left right root
+*/
+function preorder(root){
+    if(root=== null){
+        return null
+    }
+    console.log(root.data)
+    inorder(root.leftChild)
+    inorder(root.rightChild)
+}
+function inorder(root){
+    if(root=== null){
+        return null
+    }
+
+    inorder(root.leftChild)
+    console.log(root.data)
+    inorder(root.rightChild)
+
+}
+function postorder(root){
+    if(root=== null){
+        return null
+    }
+
+    inorder(root.leftChild)
+    inorder(root.rightChild)
+    console.log(root.data)
+}
+
+
 let mas = functionDriver()
 
 /*
