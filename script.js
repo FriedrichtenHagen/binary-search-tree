@@ -251,6 +251,36 @@ function postorder(root){
     console.log(root.data)
 }
 
+function height(root){ 
+    let leftHeight=0;
+    let rightHeight=0;
+
+    if(!root.leftChild&&!root.rightChild){
+        return 0
+    }
+    else if(!root.rightChild){
+        leftHeight = height(root.leftChild)+1
+    }
+    else if(!root.leftChild){
+        rightHeight = height(root.rightChild)+1
+    }
+    else{
+        leftHeight = height(root.leftChild)+1
+        rightHeight = height(root.rightChild)+1
+    }
+    // compare left and right height
+    if(leftHeight<rightHeight){
+        return rightHeight
+    }
+    else if(leftHeight>rightHeight){
+        return leftHeight
+    }
+    else{
+        // both sides are same, it does not matter which side is returned
+        return rightHeight
+    }
+}
+
 
 let mas = functionDriver()
 
