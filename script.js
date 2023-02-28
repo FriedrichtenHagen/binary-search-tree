@@ -253,7 +253,9 @@ function postorder(root){
 function height(root){ 
     let leftHeight=0;
     let rightHeight=0;
-
+    if(!root){
+        return 0
+    }
     if(!root.leftChild&&!root.rightChild){
         return 0
     }
@@ -297,7 +299,26 @@ function depth(node, key){
         return depth(node.rightChild, key)+1
     }
 }
+function isBalanced(root){
+    if(root === null){
+        return true
+    }
+    else{
+        let lH = height(root.leftChild)
+        let rH = height(root.rightChild)
 
+        if((lH-rH)>1){
+            return false
+        }
+        let lC = isBalanced(root.leftChild)
+        let rC = isBalanced(root.rightChild)
+    
+        if(!lC || !rC){
+            return false
+        }
+        return true
+    }
+}
 let mas = functionDriver()
 
 /*
