@@ -307,7 +307,7 @@ function isBalanced(root){
         let lH = height(root.leftChild)
         let rH = height(root.rightChild)
 
-        if((lH-rH)>1){
+        if(Math.abs(lH-rH)>1){
             return false
         }
         let lC = isBalanced(root.leftChild)
