@@ -232,25 +232,17 @@ function preorder(root){
     inorder(root.rightChild)
 }
 let inorderArray1 = []
-function storeInOrder(root, inorderArray){
-    let functionScopeIndex = 0
-    inorder(root, inorderArray, functionScopeIndex)
-    return inorderArray
-}
-
-function inorder(root, inorderArray, index){
+function inorder(root, inorderArray){
     if(root=== null){
         return null
     }
 
-    inorder(root.leftChild, inorderArray, index)
+    inorder(root.leftChild, inorderArray)
     inorderArray.push(root.data)
     console.log(root.data)
-    inorder(root.rightChild, inorderArray, index)
+    inorder(root.rightChild, inorderArray)
     return inorderArray
 }
-
-
 
 function postorder(root){
     if(root=== null){
@@ -336,10 +328,8 @@ function rebalance(root){
 }
 let mas = functionDriver()
 
+let teet = inorder(mas, inorderArray1)
 
-
-
-let teet = storeInOrder(mas, inorderArray1)
 /*
 clear up undefined in original binary tree
 
