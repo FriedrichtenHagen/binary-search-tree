@@ -231,16 +231,27 @@ function preorder(root){
     inorder(root.leftChild)
     inorder(root.rightChild)
 }
-function inorder(root){
+let inorderArray1 = []
+function storeInOrder(root, inorderArray){
+    let functionScopeIndex = 0
+    inorder(root, inorderArray, functionScopeIndex)
+    return inorderArray
+}
+
+function inorder(root, inorderArray, index){
     if(root=== null){
         return null
     }
 
-    inorder(root.leftChild)
+    inorder(root.leftChild, inorderArray, index)
+    inorderArray.push(root.data)
     console.log(root.data)
-    inorder(root.rightChild)
-
+    inorder(root.rightChild, inorderArray, index)
+    return inorderArray
 }
+
+
+
 function postorder(root){
     if(root=== null){
         return null
@@ -319,8 +330,16 @@ function isBalanced(root){
         return true
     }
 }
+function rebalance(root){
+    let rebalancedArray = inorder(root)
+    return sortedBinaryTree(rebalancedArray, 0, rebalancedArray.length)
+}
 let mas = functionDriver()
 
+
+
+
+let teet = storeInOrder(mas, inorderArray1)
 /*
 clear up undefined in original binary tree
 
