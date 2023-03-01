@@ -327,10 +327,54 @@ function rebalance(root){
     let rebalancedArray = inorder(root, resultArray)
     return sortedBinaryTree(rebalancedArray, 0, rebalancedArray.length)
 }
-let mas = functionDriver()
+function randomArray(length){
+    let arrayRandom = []
+    for(let i=0; i<length; i++){
+        let randomNum = Math.floor(Math.random()*20)
+        arrayRandom.push(randomNum)
+    }
+    return arrayRandom
+}
 
-let teet = inorder(mas, inorderArray1)
+function demonstration(){
+    console.log("WITNESS THE POWER OF ALGORITHMS AND DATA STRUCTURES:")
+    let demoArray = randomArray(10)
+    console.log("1: A randomly generated array:")
+    console.log(demoArray)
 
+    let removedDuplicates = removeDuplicates(demoArray)
+    console.log("2: After removing the duplicates:")
+    console.log(removedDuplicates)
+
+    let sortedArray = mergeSort(removedDuplicates)
+    console.log("3: The sorted array:")
+    console.log(sortedArray)
+
+    // create a binary tree and print it
+    console.log("4: A visual representation of the binary tree:")
+    let binaryTree = sortedBinaryTree(sortedArray, 0, sortedArray.length)
+    prettyPrint(binaryTree)
+
+    let balancedStatus = isBalanced(binaryTree)
+    console.log("5: Is the tree balanced: "+ balancedStatus)
+
+    // Print out all elements in level, pre, post, and in order
+    console.log("6: Print the tree in level order:")
+    levelOrder(binaryTree)
+ 
+    console.log("7: Print the tree in preorder:")
+    preorder(binaryTree)
+
+
+
+}
+
+
+// let mas = functionDriver()
+
+// let teet = inorder(mas, inorderArray1)
+
+demonstration()
 /*
 clear up undefined in original binary tree
 
