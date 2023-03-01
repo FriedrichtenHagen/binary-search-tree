@@ -323,7 +323,8 @@ function isBalanced(root){
     }
 }
 function rebalance(root){
-    let rebalancedArray = inorder(root)
+    let resultArray = []
+    let rebalancedArray = inorder(root, resultArray)
     return sortedBinaryTree(rebalancedArray, 0, rebalancedArray.length)
 }
 let mas = functionDriver()
