@@ -338,7 +338,7 @@ function randomArray(length){
 
 function demonstration(){
     console.log("WITNESS THE POWER OF ALGORITHMS AND DATA STRUCTURES:")
-    let demoArray = randomArray(10)
+    let demoArray = randomArray(5)
     console.log("1: A randomly generated array:")
     console.log(demoArray)
 
@@ -352,7 +352,8 @@ function demonstration(){
 
     // create a binary tree and print it
     console.log("4: A visual representation of the binary tree:")
-    let binaryTree = sortedBinaryTree(sortedArray, 0, sortedArray.length)
+    let binaryTree = sortedBinaryTree(sortedArray, 0, sortedArray.length-1)
+    console.log(binaryTree)
     prettyPrint(binaryTree)
 
     let balancedStatus = isBalanced(binaryTree)
