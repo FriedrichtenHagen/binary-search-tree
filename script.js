@@ -381,6 +381,10 @@ function demonstration(){
 
     console.log("6: Print the tree in level order:")
     levelOrder(rebalancedTree)
+
+    console.log("6: Print the tree inorder:")
+    let testsss = []
+    inorder(rebalancedTree, testsss)
  
     console.log("7: Print the tree in preorder:")
     preorder(rebalancedTree)
