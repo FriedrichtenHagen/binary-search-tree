@@ -91,7 +91,6 @@ function insertNode(binaryTree, value){
         if(binaryTree.leftChild === null){
             // we have reached the end of this path
             binaryTree.leftChild = createNode(value)
-            console.log("suc")
             return
         } else{
             insertNode(binaryTree.leftChild, value)
@@ -102,7 +101,6 @@ function insertNode(binaryTree, value){
         if(binaryTree.rightChild === null){
             // we have reached the end of this path
             binaryTree.rightChild = createNode(value)
-            console.log("suc")
             return
         } else{
             insertNode(binaryTree.rightChild, value)
@@ -203,20 +201,7 @@ function levelOrder(root){
             queue.push(firstNode.rightChild.data)
         }
     }
-
     return queue
-    // // push to queue
-    // if(root.leftChild){
-    //     queue.push(root.leftChild)
-    // } 
-    // else if(root.rightChild){
-    //     queue.push(root.rightChild)
-    // }
-    // else{
-    //     // leaf node
-    //     return 
-    // }
-
 }
 /*
 preorder: root left right
@@ -228,29 +213,27 @@ function preorder(root){
         return null
     }
     console.log(root.data)
-    inorder(root.leftChild)
-    inorder(root.rightChild)
+    let inorderArray1 = []
+    inorder(root.leftChild, inorderArray1)
+    inorder(root.rightChild, inorderArray1)
 }
-let inorderArray1 = []
 function inorder(root, inorderArray){
     if(root=== null){
         return null
     }
-
     inorder(root.leftChild, inorderArray)
     inorderArray.push(root.data)
     console.log(root.data)
     inorder(root.rightChild, inorderArray)
     return inorderArray
 }
-
 function postorder(root){
     if(root=== null){
         return null
     }
-
-    inorder(root.leftChild)
-    inorder(root.rightChild)
+    let inorderArray2 = [] 
+    inorder(root.leftChild, inorderArray2)
+    inorder(root.rightChild, inorderArray2)
     console.log(root.data)
 }
 function height(root){ 
@@ -325,7 +308,7 @@ function isBalanced(root){
 function rebalance(root){
     let resultArray = []
     let rebalancedArray = inorder(root, resultArray)
-    return sortedBinaryTree(rebalancedArray, 0, rebalancedArray.length)
+    return sortedBinaryTree(rebalancedArray, 0, rebalancedArray.length-1)
 }
 function randomArray(length){
     let arrayRandom = []
@@ -334,6 +317,19 @@ function randomArray(length){
         arrayRandom.push(randomNum)
     }
     return arrayRandom
+}
+function createRandomNumbersAboveHundred(howManyNumbers){
+    let randomNumArray = []
+    for(let i=0; i<howManyNumbers; i++){
+        let ranNum = Math.floor(Math.random()*100+100)
+        randomNumArray.push(ranNum)
+    }
+    return randomNumArray
+}
+function addNumbersToBinaryTree(array, tree){
+    array.forEach(element => {
+        insertNode(tree, element)        
+    });
 }
 
 function demonstration(){
@@ -353,7 +349,7 @@ function demonstration(){
     // create a binary tree and print it
     console.log("4: A visual representation of the binary tree:")
     let binaryTree = sortedBinaryTree(sortedArray, 0, sortedArray.length-1)
-    console.log(binaryTree)
+    // console.log(binaryTree)
     prettyPrint(binaryTree)
 
     let balancedStatus = isBalanced(binaryTree)
@@ -366,7 +362,31 @@ function demonstration(){
     console.log("7: Print the tree in preorder:")
     preorder(binaryTree)
 
+    console.log("8: Print the tree in postorder:")
+    postorder(binaryTree)
 
+    // Unbalance the tree by adding several numbers > 100
+    let randomNumberArray = createRandomNumbersAboveHundred(3)
+    console.log("9: Generate random numbers (>100) and add them to the tree")
+    addNumbersToBinaryTree(randomNumberArray, binaryTree)
+    prettyPrint(binaryTree)
+
+    console.log("10: Is the tree balanced: " +isBalanced(binaryTree))
+
+    console.log("11: Rebalance the tree:")
+    let rebalancedTree = rebalance(binaryTree)
+    prettyPrint(rebalancedTree)
+
+    console.log("12: Is the tree balanced: " +isBalanced(rebalancedTree))
+
+    console.log("6: Print the tree in level order:")
+    levelOrder(rebalancedTree)
+ 
+    console.log("7: Print the tree in preorder:")
+    preorder(rebalancedTree)
+
+    console.log("8: Print the tree in postorder:")
+    postorder(rebalancedTree)
 
 }
 
