@@ -208,14 +208,14 @@ preorder: root left right
 inorder: left root right
 postorder: left right root
 */
-function preorder(root){
+function preorder(root, array){
     if(root=== null){
         return null
     }
     console.log(root.data)
-    let inorderArray1 = []
-    inorder(root.leftChild, inorderArray1)
-    inorder(root.rightChild, inorderArray1)
+    array.push(root.data)
+    preorder(root.leftChild, array)
+    preorder(root.rightChild, array)
 }
 function inorder(root, inorderArray){
     if(root=== null){
@@ -334,7 +334,7 @@ function addNumbersToBinaryTree(array, tree){
 
 function demonstration(){
     console.log("WITNESS THE POWER OF ALGORITHMS AND DATA STRUCTURES:")
-    let demoArray = randomArray(5)
+    let demoArray = randomArray(15)
     console.log("1: A randomly generated array:")
     console.log(demoArray)
 
@@ -358,9 +358,20 @@ function demonstration(){
     // Print out all elements in level, pre, post, and in order
     console.log("6: Print the tree in level order:")
     levelOrder(binaryTree)
+
+
+
+
+
+
+    console.log("6b: Print the tree inorder:")
+    let test1 = []
+    inorder(binaryTree, test1)
  
     console.log("7: Print the tree in preorder:")
-    preorder(binaryTree)
+    let test123 = []
+    preorder(binaryTree, test123)
+    console.log(test123)
 
     console.log("8: Print the tree in postorder:")
     postorder(binaryTree)
@@ -382,15 +393,15 @@ function demonstration(){
     console.log("6: Print the tree in level order:")
     levelOrder(rebalancedTree)
 
-    console.log("6: Print the tree inorder:")
-    let testsss = []
-    inorder(rebalancedTree, testsss)
+    // console.log("6: Print the tree inorder:")
+    // let testsss = []
+    // inorder(rebalancedTree, testsss)
  
-    console.log("7: Print the tree in preorder:")
-    preorder(rebalancedTree)
+    // console.log("7: Print the tree in preorder:")
+    // preorder(rebalancedTree)
 
-    console.log("8: Print the tree in postorder:")
-    postorder(rebalancedTree)
+    // console.log("8: Print the tree in postorder:")
+    // postorder(rebalancedTree)
 
 }
 
