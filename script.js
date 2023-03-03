@@ -216,25 +216,27 @@ function preorder(root, array){
     array.push(root.data)
     preorder(root.leftChild, array)
     preorder(root.rightChild, array)
+
+    return array
 }
-function inorder(root, inorderArray){
+function inorder(root, array){
     if(root=== null){
         return null
     }
-    inorder(root.leftChild, inorderArray)
-    inorderArray.push(root.data)
+    inorder(root.leftChild, array)
+    array.push(root.data)
     console.log(root.data)
-    inorder(root.rightChild, inorderArray)
-    return inorderArray
+    inorder(root.rightChild, array)
+    return array
 }
-function postorder(root){
+function postorder(root, array){
     if(root=== null){
         return null
     }
-    let inorderArray2 = [] 
-    inorder(root.leftChild, inorderArray2)
-    inorder(root.rightChild, inorderArray2)
+    postorder(root.leftChild, array)
+    postorder(root.rightChild, array)
     console.log(root.data)
+    array.push(root.data)
 }
 function height(root){ 
     let leftHeight=0;
@@ -359,22 +361,19 @@ function demonstration(){
     console.log("6: Print the tree in level order:")
     levelOrder(binaryTree)
 
-
-
-
-
-
     console.log("6b: Print the tree inorder:")
     let test1 = []
     inorder(binaryTree, test1)
+    console.log(test1)
  
     console.log("7: Print the tree in preorder:")
-    let test123 = []
-    preorder(binaryTree, test123)
-    console.log(test123)
+    let test2 = []
+    preorder(binaryTree, test2)
+    console.log(test2)
 
     console.log("8: Print the tree in postorder:")
-    postorder(binaryTree)
+    let test3 = []
+    postorder(binaryTree, test3)
 
     // Unbalance the tree by adding several numbers > 100
     let randomNumberArray = createRandomNumbersAboveHundred(3)
@@ -390,15 +389,22 @@ function demonstration(){
 
     console.log("12: Is the tree balanced: " +isBalanced(rebalancedTree))
 
-    console.log("6: Print the tree in level order:")
+    console.log("13: Print the tree in level order:")
     levelOrder(rebalancedTree)
 
-    // console.log("6: Print the tree inorder:")
-    // let testsss = []
-    // inorder(rebalancedTree, testsss)
+    console.log("14: Print the tree inorder:")
+    let test4 = []
+    inorder(rebalancedTree, test4)
  
-    // console.log("7: Print the tree in preorder:")
-    // preorder(rebalancedTree)
+    console.log("15: Print the tree in preorder:")
+    let test5 = []
+    preorder(rebalancedTree, test5)
+
+    console.log("16: Print the tree in postorder:")
+    let test6 = []
+    postorder(binaryTree, test6)
+
+
 
     // console.log("8: Print the tree in postorder:")
     // postorder(rebalancedTree)
